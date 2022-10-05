@@ -1,0 +1,22 @@
+<h1>
+  ホーム
+</h1>
+<nav>
+  ログアウト
+  グループへ
+  歩数記録登録
+</nav>
+<div class="footsteps">
+  <h2>歩数記録一覧</h2>
+  <ul>
+    <% @footsteps.each do |footstep| %>
+      <li>
+        <%= footstep.date %><br>
+        <%= footstep.footstep %>歩<br>
+        <%= footstep.favo %>いいね<br>
+        <%#= link_to '[編集]', edit_footstep_path(footstep), class: "command" %>
+        <%#= button_to "[削除]", footsteps_path, method: :delete, class: "command" %>
+      </li>
+    <% end %>
+  </ul>
+</div>
