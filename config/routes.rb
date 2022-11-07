@@ -6,5 +6,6 @@ Rails.application.routes.draw do
 
   root "footsteps#index"
   resources :footsteps
+  resources :groups
 
 end

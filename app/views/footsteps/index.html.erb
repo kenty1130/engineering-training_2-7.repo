@@ -4,7 +4,7 @@
 <nav>
   ログアウト
   グループへ
-  歩数記録登録
+  <%= link_to '歩数記録登録', new_footstep_path %>
 </nav>
 <div class="footsteps">
   <h2>歩数記録一覧</h2>
@@ -14,8 +14,8 @@
         <%= footstep.date %><br>
         <%= footstep.footstep %>歩<br>
         <%= footstep.favo %>いいね<br>
-        <%#= link_to '[編集]', edit_footstep_path(footstep), class: "command" %>
-        <%#= button_to "[削除]", footsteps_path, method: :delete, class: "command" %>
+        <%= link_to '[編集]', edit_footstep_path(footstep), class: "command" %>
+        <%= button_to "[削除]", footsteps_path, method: :delete, class: "command" %>
       </li>
     <% end %>
   </ul>
