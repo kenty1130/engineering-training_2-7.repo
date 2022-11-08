@@ -1,0 +1,21 @@
+<%= form_for @footstep do |f| %>
+  <p>
+    <%= f.date_field :date %>
+    <% if @footstep.errors.messages[:date].any? %>
+      <span class="error"><%= @footstep.errors.messages[:date][0] %></span>
+    <% end %>
+  </p>
+  <p>
+    <%= f.number_field :footstep %>
+    <% if @footstep.errors.messages[:footstep].any? %>
+      <span class="error"><%= @footstep.errors.messages[:footstep][0] %></span>
+    <% end %>
+  </p>
+  <p>
+    <% if f.object.new_record? %>
+      <%= f.submit "登録" %>
+    <% else %>
+      <%= f.submit "編集" %>
+    <% end %>
+  </p>
+<% end %>
