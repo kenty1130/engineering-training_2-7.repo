@@ -1,0 +1,16 @@
+<%= form_for @group do |f| %>
+  <p>
+    <%= f.text_field :group_name %>
+    <% if @group.errors.messages[:group_name].any? %>
+      <span class="error"><%= @group.errors.messages[:group_name][0] %></span>
+    <% end %>
+  </p>
+<!--ユーザーを追加するフォームを書く-->
+  <p>
+    <% if f.object.new_record? %>
+      <%= f.submit "作成" %>
+    <% else %>
+      <%= f.submit "編集" %>
+    <% end %>
+  </p>
+<% end %>

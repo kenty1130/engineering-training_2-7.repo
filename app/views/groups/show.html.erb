@@ -1,0 +1,14 @@
+<h1>
+  <%= @group.group_name %>
+</h1>
+<nav>
+  <%= link_to 'グループ一覧へ', groups_path %>
+</nav>
+<h2>
+  <%= @today %>
+</h2>
+<nav>
+  <%= link_to '[編集]', edit_group_path(group), class: "command" %>
+  <%#= link_to '[退会]' %>
+  <%= button_to "[削除]", groups_path, method: :delete, class: "command" %>
+</nav>
