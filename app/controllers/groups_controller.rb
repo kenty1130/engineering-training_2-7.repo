@@ -5,7 +5,6 @@ class GroupsController < ApplicationController
 
   def show
     @group = Group.find(params[:id])
-    require 'date'
     @today = Date.today
   end
 
