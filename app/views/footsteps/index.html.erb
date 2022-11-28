@@ -13,7 +13,7 @@
       <li>
         <%= footstep.date %><br>
         <%= footstep.footstep %>歩<br>
-        <%= footstep.favo %>いいね<br>
+<!--        <%#= footstep.favo %>いいね<br>-->
         <%= link_to '[編集]', edit_footstep_path(footstep), class: "command" %>
         <%= button_to "[削除]", footsteps_path, method: :delete, class: "command" %>
       </li>
