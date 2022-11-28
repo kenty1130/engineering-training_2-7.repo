@@ -9,6 +9,7 @@ class FootstepsController < ApplicationController
 
   def create
     @footstep = Footstep.new(footstep_params)
+    @footstep.user_id = current_user.id if current_user
     if @footstep.save
       redirect_to footsteps_path
     else

@@ -2,7 +2,7 @@
   ホーム
 </h1>
 <nav>
-  ログアウト
+  <%= link_to "ログアウト", destroy_user_session_path, method: :delete %>
   <%= link_to 'グループへ', groups_path %>
   <%= link_to '歩数記録登録', new_footstep_path %>
 </nav>
