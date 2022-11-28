@@ -1,6 +1,6 @@
 class FootstepsController < ApplicationController
   def index
-    @footsteps = Footstep.all.order(date: 'asc')
+    @footsteps = Footstep.where(user_id: current_user.id).order(date: 'asc')
   end
 
   def new

@@ -16,6 +16,8 @@ Rails.application.routes.draw do
   resources :footsteps do
     resources :favos, only: [:create, :destroy]
   end
-  resources :groups
+  resources :groups do
+    get "leave" => "groups#leave"
+  end
 
 end

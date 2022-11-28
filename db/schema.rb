@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_11_28_092834) do
+ActiveRecord::Schema[7.0].define(version: 2022_11_28_103212) do
   create_table "favos", charset: "utf8mb4", force: :cascade do |t|
     t.bigint "user_id", null: false
     t.bigint "footstep_id", null: false
@@ -23,7 +23,6 @@ ActiveRecord::Schema[7.0].define(version: 2022_11_28_092834) do
   create_table "footsteps", charset: "utf8mb4", force: :cascade do |t|
     t.integer "footstep", null: false
     t.date "date", null: false
-    t.integer "favo"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.bigint "user_id"
@@ -42,9 +41,10 @@ ActiveRecord::Schema[7.0].define(version: 2022_11_28_092834) do
   end
 
   create_table "groups", charset: "utf8mb4", force: :cascade do |t|
-    t.string "group_name"
+    t.string "group_name", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "owner_id"
   end
 
   create_table "users", charset: "utf8mb4", force: :cascade do |t|

@@ -1,19 +1,24 @@
 class GroupsController < ApplicationController
   def index
-    @groups = Group.all.order(group_name: 'asc')
+    @groups = current_user.groups
   end
 
   def show
     @group = Group.find(params[:id])
     @today = Date.today
+    @members = @group.users
+    @footsteps = Footstep.where(date: @today)
   end
 
   def new
     @group = Group.new
+    @users = User.all
   end
 
   def create
     @group = Group.new(group_params)
+    @group.owner_id = current_user.id
+    @group.users << current_user
     if @group.save
       redirect_to groups_path
     else
@@ -37,6 +42,12 @@ class GroupsController < ApplicationController
   def destroy
     @group = Group.find(params[:id])
     @group.destroy
+    redirect_to groups_path
+  end
+
+  def leave
+    @group = Group.find(params[:id])
+    @group.users.delete(current_user)
     redirect_to groups_path
   end
 
