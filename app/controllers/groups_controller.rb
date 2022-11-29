@@ -7,7 +7,6 @@ class GroupsController < ApplicationController
     @group = Group.find(params[:id])
     @today = Date.today
     @members = @group.users
-    @footsteps = Footstep.where(date: @today)
   end
 
   def new
@@ -18,6 +17,10 @@ class GroupsController < ApplicationController
   def create
     @group = Group.new(group_params)
     @group.owner_id = current_user.id
+    user_ids = params["group"]["users"]
+    user_ids.each do |e|
+      @group.group_users.build(user_id: e)
+    end
     @group.users << current_user
     if @group.save
       redirect_to groups_path

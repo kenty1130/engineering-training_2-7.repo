@@ -16,7 +16,7 @@
 <!--        <%#= footstep.favo %>いいね<br>-->
         作成日時<%= footstep.created_at.strftime('%Y/%m/%d %H:%M') %><br>
         <%= link_to '[編集]', edit_footstep_path(footstep), class: "command" %>
-        <%= button_to "[削除]", footsteps_path, method: :delete, class: "command" %>
+        <%= button_to "[削除]", footstep_path(footstep), method: :delete, class: "command" %>
       </li>
     <% end %>
   </ul>

@@ -10,7 +10,7 @@
 <nav>
   <% if current_user.id ==  @group.owner_id %>
     <%= link_to '[編集]', edit_group_path(@group), class: "command" %>
-    <%= button_to "[削除]", groups_path, method: :delete, class: "command" %>
+    <%= button_to "[削除]", group_path(@group), method: :delete, class: "command" %>
   <% else %>
     <%= link_to '[退会]', controller: 'groups', action: 'leave'  %>
   <% end %>
@@ -19,7 +19,7 @@
   <% @members.each do |member| %>
     <li>
       <%= member.email %><br>
-      <%= @footsteps.where(user_id: member.id) %>
+      <%= member.footsteps.find_by(date: @today)&.footstep %>歩
       <%#= いいね %>
     </li>
   <% end %>
