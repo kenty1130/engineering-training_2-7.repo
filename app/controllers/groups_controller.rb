@@ -49,9 +49,11 @@ class GroupsController < ApplicationController
   end
 
   def leave
+    # binding.pry
     @group = Group.find(params[:id])
-    @group.users.delete(current_user)
-    redirect_to groups_path
+    if @group.users.delete(current_user)
+      redirect_to groups_path
+    end
   end
 
   private
