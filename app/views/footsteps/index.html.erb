@@ -2,7 +2,7 @@
   ホーム
 </h1>
 <nav>
-  ログアウト
+  <%= link_to "ログアウト", destroy_user_session_path, method: :delete %>
   <%= link_to 'グループへ', groups_path %>
   <%= link_to '歩数記録登録', new_footstep_path %>
 </nav>
@@ -13,9 +13,10 @@
       <li>
         <%= footstep.date %><br>
         <%= footstep.footstep %>歩<br>
-        <%= footstep.favo %>いいね<br>
+<!--        <%#= footstep.favo %>いいね<br>-->
+        作成日時<%= footstep.created_at.strftime('%Y/%m/%d %H:%M') %><br>
         <%= link_to '[編集]', edit_footstep_path(footstep), class: "command" %>
-        <%= button_to "[削除]", footsteps_path, method: :delete, class: "command" %>
+        <%= button_to "[削除]", footstep_path(footstep), method: :delete, class: "command" %>
       </li>
     <% end %>
   </ul>

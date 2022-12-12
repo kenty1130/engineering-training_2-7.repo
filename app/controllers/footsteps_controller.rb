@@ -1,6 +1,6 @@
 class FootstepsController < ApplicationController
   def index
-    @footsteps = Footstep.all.order(date: 'asc')
+    @footsteps = Footstep.where(user_id: current_user.id).order(date: 'asc')
   end
 
   def new
@@ -9,6 +9,7 @@ class FootstepsController < ApplicationController
 
   def create
     @footstep = Footstep.new(footstep_params)
+    @footstep.user_id = current_user.id if current_user
     if @footstep.save
       redirect_to footsteps_path
     else

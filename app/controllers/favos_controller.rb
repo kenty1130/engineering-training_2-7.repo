@@ -1,0 +1,2 @@
+class FavosController < ApplicationController
+end

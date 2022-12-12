@@ -8,7 +8,19 @@
   <%= @today %>
 </h2>
 <nav>
-  <%= link_to '[編集]', edit_group_path(group), class: "command" %>
-  <%#= link_to '[退会]' %>
-  <%= button_to "[削除]", groups_path, method: :delete, class: "command" %>
+  <% if current_user.id ==  @group.owner_id %>
+    <%= link_to '[編集]', edit_group_path(@group), class: "command" %>
+    <%= button_to "[削除]", group_path(@group), method: :delete, class: "command" %>
+  <% else %>
+    <%= button_to '[退会]', leave_group_path(@group), method: :put  %>
+  <% end %>
 </nav>
+<ul>
+  <% @members.each do |member| %>
+    <li>
+      <%= member.email %><br>
+      <%= member.footsteps.find_by(date: @today)&.footstep %>歩
+      <%#= いいね %>
+    </li>
+  <% end %>
+</ul>
