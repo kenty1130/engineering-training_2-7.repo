@@ -12,15 +12,25 @@
     <%= link_to '[編集]', edit_group_path(@group), class: "command" %>
     <%= button_to "[削除]", group_path(@group), method: :delete, class: "command" %>
   <% else %>
-    <%= button_to '[退会]', leave_group_path(@group), method: :put  %>
+    <%= button_to '[退会]', leave_group_path(@group), method: :put, class: "command"  %>
   <% end %>
 </nav>
 <ul>
   <% @members.each do |member| %>
     <li>
       <%= member.email %><br>
-      <%= member.footsteps.find_by(date: @today)&.footstep %>歩
-      <%#= いいね %>
+      <% today_footstep = member.footsteps.find_by(date: @today) %>
+      <% if today_footstep.present? %>
+        <%= today_footstep&.footstep %>歩<br>
+        <% if today_footstep&.favos.present? %>
+            <%= today_footstep&.favos.count %>いいね
+        <% end %>
+            <% if today_footstep&.favo?(current_user) %>
+                <%= button_to 'いいねを外す', footstep_favo_path(today_footstep.id), method: :delete, params: { group_id: @group.id }, class: "command" %>
+                <% else %>
+                <%= button_to 'いいね', footstep_favos_path(today_footstep.id), method: :post, params: { group_id: @group.id }, class: "command" %>
+            <% end %>
+      <% end %>
     </li>
   <% end %>
 </ul>
