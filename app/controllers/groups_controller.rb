@@ -7,6 +7,7 @@ class GroupsController < ApplicationController
     @group = Group.find(params[:id])
     @today = Date.today
     @members = @group.users
+
   end
 
   def new
@@ -55,6 +56,7 @@ class GroupsController < ApplicationController
       redirect_to groups_path
     end
   end
+
 
   private
   def group_params
