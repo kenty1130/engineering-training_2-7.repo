@@ -5,14 +5,14 @@ RSpec.describe Footstep, type: :model do
 
   # describeはtest対象を書く
   describe 'favo?' do
+
+    # let は テストで使用する変数を定義する
+    # letしただけだと、データは使えない、beforeで呼んでおく必要がある
+    let(:user) { User.create!(email: 'email@rails.com', password: '1111', password_confirmation: '1111') }
+    let(:footstep) { Footstep.create!(footstep: 100, date: '2022-12-31', user: user) }
+
     # contextは前提条件を書く
     context 'userがFootstepにfavoしているとき' do
-
-      # let は テストで使用する変数を定義する
-      # letしただけだと、データは使えない、beforeで呼んでおく必要がある
-      let(:user) { User.create!(email: 'email@rails.com', password: '1111', password_confirmation: '1111') }
-      let(:footstep) { Footstep.create!(footstep: 100, date: '2022-12-31', user: user) }
-
       # beforeはテスト前にしておく準備
       before do
         user
